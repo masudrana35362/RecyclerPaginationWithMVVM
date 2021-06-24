@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RecyclerPaginationWithMVVM</string>
+    <string name="productlist">ProductList</string>
 </resources>

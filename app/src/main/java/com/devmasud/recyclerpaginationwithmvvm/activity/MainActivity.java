@@ -1,8 +1,10 @@
-package com.devmasud.recyclerpaginationwithmvvm;
+package com.devmasud.recyclerpaginationwithmvvm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.devmasud.recyclerpaginationwithmvvm.R;
 
 public class MainActivity extends AppCompatActivity {
 
