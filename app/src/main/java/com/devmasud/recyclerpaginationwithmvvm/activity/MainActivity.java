@@ -1,12 +1,14 @@
 package com.devmasud.recyclerpaginationwithmvvm.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
-import android.widget.Toast;
-
 import com.devmasud.recyclerpaginationwithmvvm.R;
 import com.devmasud.recyclerpaginationwithmvvm.adapter.ProductAdapter;
 import com.devmasud.recyclerpaginationwithmvvm.databinding.ActivityMainBinding;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private List<BigSaveDataResponse> bigSaveDataResponseList = new ArrayList<>();
     private ProductAdapter productAdapter;
     private int currentPage = 1;
+    private int totalAvailablePage=5;
 
 
     @Override
@@ -34,10 +37,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void doInitialization() {
         activityMainBinding.productRecycler.setHasFixedSize(true);
+        activityMainBinding.productRecycler.setLayoutManager(new GridLayoutManager(this,2));
         viewModel = new ViewModelProvider(this).get(ProductsViewModel.class);
         productAdapter = new ProductAdapter(bigSaveDataResponseList);
         activityMainBinding.productRecycler.setAdapter(productAdapter);
-
+        activityMainBinding.productRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!activityMainBinding.productRecycler.canScrollVertically(1)){
+                    if (currentPage <= totalAvailablePage){
+                        currentPage +=1;
+                        getProductsList();
+                    }
+                }
+            }
+        });
 
         getProductsList();
     }
@@ -48,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
             toggleLoading();
             if (getProduct != null) {
                 if (getProduct.getData() != null) {
+                    int oldCount=bigSaveDataResponseList.size();
                     bigSaveDataResponseList.addAll(getProduct.getData());
-                    productAdapter.notifyDataSetChanged();
+                    productAdapter.notifyItemRangeInserted(oldCount,bigSaveDataResponseList.size());
 
                 }
             }
