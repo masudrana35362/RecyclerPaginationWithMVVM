@@ -10,7 +10,7 @@ public class ApiClient {
     public static Retrofit getRetrofit(){
         if (retrofit==null){
             retrofit=new Retrofit.Builder()
-                    .baseUrl("https://www.muktomart.com/api/")
+                    .baseUrl("https://muktomart.com/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
