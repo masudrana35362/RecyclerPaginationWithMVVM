@@ -32,14 +32,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        productAdapter = new ProductAdapter(this);
         doInitialization();
+
     }
 
     private void doInitialization() {
+
         activityMainBinding.productRecycler.setHasFixedSize(true);
         activityMainBinding.productRecycler.setLayoutManager(new GridLayoutManager(this,2));
         viewModel = new ViewModelProvider(this).get(ProductsViewModel.class);
-        productAdapter = new ProductAdapter(bigSaveDataResponseList);
+        productAdapter.setData(bigSaveDataResponseList);
         activityMainBinding.productRecycler.setAdapter(productAdapter);
         activityMainBinding.productRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
