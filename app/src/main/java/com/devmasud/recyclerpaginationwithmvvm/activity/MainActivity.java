@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private List<BigSaveDataResponse> bigSaveDataResponseList = new ArrayList<>();
     private ProductAdapter productAdapter;
     private int currentPage = 1;
-    private int totalAvailablePage=5;
+    private int totalAvailablePage=20;
 
 
     @Override
