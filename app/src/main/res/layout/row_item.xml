@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/DeepPink">
 
-    <data>
-        <variable
-            name="pShow"
-            type="com.devmasud.recyclerpaginationwithmvvm.model.BigSaveDataResponse" />
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="center" />
 
-    </data>
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgIcon"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="@color/DeepPink"
-        android:layout_height="wrap_content">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/imgIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:imageURL="@{pShow.thumbnail}"
-            android:scaleType="center" />
-
-        <TextView
-            android:id="@+id/txtName"
-            android:layout_below="@+id/imgIcon"
-            android:layout_width="wrap_content"
-            android:text="@{pShow.name}"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp" />
-
-
-    </RelativeLayout>
-</layout>
+</RelativeLayout>
