@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
+
 import com.devmasud.recyclerpaginationwithmvvm.R;
 import com.devmasud.recyclerpaginationwithmvvm.adapter.ProductAdapter;
 import com.devmasud.recyclerpaginationwithmvvm.databinding.ActivityMainBinding;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleLoading() {
+
         if (currentPage == 1) {
             if (activityMainBinding.getIsLoading() != null && activityMainBinding.getIsLoading()) {
                 activityMainBinding.setIsLoading(false);
@@ -91,5 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 }
